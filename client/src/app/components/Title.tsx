@@ -5,18 +5,18 @@ import { useEffect } from "react";
 import { useSpring, animated } from 'react-spring';
 
 export default function Title() {
-  const [fadeBounceAnimation, setFadeBounceAnimation] = useSpring(() => ({
+  const [slideInAnimation, setSlideInAnimation] = useSpring(() => ({
     from: { opacity: 0, transform: 'translateY(-50px)' },
     to: { opacity: 1, transform: 'translateY(0px)' },
-    config: { tension: 120, friction: 14, duration: 5000 },
+    config: { tension: 120, friction: 14, duration: 15000 },
   }));
 
   useEffect(() => {
-    setFadeBounceAnimation({ opacity: 1, transform: 'translateY(0px)' });
-  }, [setFadeBounceAnimation]);
+    setSlideInAnimation({ opacity: 1, transform: 'translateY(0px)' });
+  }, [setSlideInAnimation]);
 
   return (
-    <animated.div style={fadeBounceAnimation}>
+    <animated.div style={slideInAnimation}>
       <Image
         src="/assets/title.png"
         alt="Thoughts.io"
