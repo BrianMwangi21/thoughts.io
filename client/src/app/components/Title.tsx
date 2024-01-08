@@ -13,12 +13,12 @@ export default function Title() {
   }, [setSlideInAnimation]);
 
   return (
-    <animated.div style={slideInAnimation}>
+    <animated.div style={slideInAnimation} className="w-[200px] h-[100px] md:w-[300px] md:h-[150px]">
       <Image
         src="/assets/title.png"
         alt="Thoughts.io"
-        width={300}
-        height={300}
+        fill
+        className="object-contain"
       />
     </animated.div>
   )
