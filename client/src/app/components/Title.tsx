@@ -6,7 +6,7 @@ import { animated } from 'react-spring';
 import useSlideInAnimation from "../utils/useSlideInAnimation";
 
 export default function Title() {
-  const { slideInAnimation, setSlideInAnimation } = useSlideInAnimation();
+  const { slideInAnimation, setSlideInAnimation } = useSlideInAnimation(0);
 
   useEffect(() => {
     setSlideInAnimation({ opacity: 1, transform: 'translateY(0px)' });
