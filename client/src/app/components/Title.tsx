@@ -13,7 +13,7 @@ export default function Title() {
   }, [setSlideInAnimation]);
 
   return (
-    <animated.div style={slideInAnimation} className="z-1000 w-[200px] h-[100px] md:w-[300px] md:h-[150px]">
+    <animated.div style={slideInAnimation} className="absolute top-0 z-20 w-[200px] h-[100px] md:w-[300px] md:h-[150px]">
       <Image
         src="/assets/title.png"
         alt="Thoughts.io"
