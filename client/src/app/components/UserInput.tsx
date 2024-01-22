@@ -13,8 +13,16 @@ export default function UserInput() {
     if (event.key == 'Enter') {
       emitter.emit('create_balloon', input);
       setInput('');
+
+      // For mobile, blur the keyboard to see the full screen
       const target = event.target as HTMLInputElement;
       target.blur();
+
+      // Then scroll to top
+      window.scroll({
+        top: 0,
+        behavior: 'smooth'
+      })
     }
   }
 
