@@ -4,26 +4,39 @@ import Image from "next/image";
 import { useEffect, useState } from 'react';
 import { emitter } from '../utils/emitter';
 import { animated, useSpring } from 'react-spring';
+import { Grape_Nuts } from "next/font/google";
+
+const grapeNuts = Grape_Nuts({
+  weight: '400',
+  subsets: ["latin"]
+});
 
 const Balloon = ({ input }: { input: string }) => {
+  const startX = Math.random() * window.innerWidth - 200;
+  const endX = Math.random() * window.innerWidth - 200;
+
   const [flyAwayAnimation, setFlyAwayAnimation] = useSpring(() => ({
-    from: { transform: `translate3d(50vw, 100vh, 0)` },
-    to: { transform: `translate3d(50vw, -100vh, 0)` },
-    config: { tension: 120, friction: 14, duration: 5000 }
+    from: { transform: `translate3d(${startX}px, 100vh, 0)` },
+    config: { tension: 120, friction: 14, duration: 10000 }
   }));
 
   useEffect(() => {
-    setFlyAwayAnimation({ transform: `translate3d(50vw, -100vh, 0)` });
-  }, [setFlyAwayAnimation]);
+    setFlyAwayAnimation({ transform: `translate3d(${endX}, 0vh, 0)` });
+  }, [setFlyAwayAnimation, endX]);
 
   return (
     <animated.div style={{ ...flyAwayAnimation, position: 'fixed', left: 0, top: 0 }}>
-      <Image
-        src="/assets/ballon1.png"
-        alt={input}
-        width={200}
-        height={400}
-      />
+      <div className="relative w-[400px] h-[600px]">
+        <Image
+          src="/assets/ballon1.png"
+          alt={input}
+          width={400}
+          height={600}
+        />
+        <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/3 text-white text-5xl font-extra">
+          <span className={grapeNuts.className}>{input.toUpperCase()}</span>
+        </div>
+      </div>
     </animated.div>
   )
 }
@@ -32,7 +45,6 @@ export default function Canvas() {
   const [balloons, setBalloons] = useState<React.ReactNode[]>([]);
 
   const handleCreateBallon = (input: string) => {
-    console.log("Adding new balloon", input);
     setBalloons(prevBalloons => [...prevBalloons, <Balloon key={prevBalloons.length} input={input} />])
   }
 
