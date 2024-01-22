@@ -35,6 +35,7 @@ const Balloon = ({ input }: { input: string }) => {
           alt={input}
           fill
           objectFit="contain"
+          priority
         />
         <div className="absolute text-center top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-white md:text-4xl font-extra">
           <span className={pacifico.className}>{input.toUpperCase()}</span>
