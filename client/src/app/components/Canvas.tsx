@@ -13,9 +13,8 @@ const pacifico = Pacifico({
 
 const Balloon = ({ input }: { input: string }) => {
   const images = ["/assets/ballon1.png", "/assets/ballon2.png", "/assets/ballon3.png"];
-  const offset = window.innerWidth - 400;
-  const startX = Math.random() * offset;
-  const endX = offset - startX;
+  const startX = Math.random() * window.innerWidth;
+  const endX = Math.random() * window.innerWidth;
 
   const [flyAwayAnimation, setFlyAwayAnimation] = useSpring(() => ({
     from: { transform: `translate3d(${startX}px, 100vh, 0)` },
@@ -28,17 +27,16 @@ const Balloon = ({ input }: { input: string }) => {
     });
   }, [setFlyAwayAnimation, endX]);
 
-
   return (
     <animated.div style={{ ...flyAwayAnimation, position: 'fixed', left: 0, top: 0 }}>
-      <div className="relative w-[400px] h-[600px]">
+      <div className="relative w-[200px] h-[300px] md:w-[400px] md:h-[600px]">
         <Image
           src={images[Math.floor(Math.random() * images.length)]}
           alt={input}
-          width={400}
-          height={600}
+          fill
+          objectFit="contain"
         />
-        <div className="absolute text-center top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/3 text-white text-5xl font-extra">
+        <div className="absolute text-center top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-white md:text-4xl font-extra">
           <span className={pacifico.className}>{input.toUpperCase()}</span>
         </div>
       </div>
