@@ -9,7 +9,7 @@ export default function UserInput() {
   const { slideInAnimation, setSlideInAnimation } = useSlideInAnimation(200);
   const [input, setInput] = useState('');
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key == 'Enter') {
       emitter.emit('create_balloon', input);
       setInput('');
