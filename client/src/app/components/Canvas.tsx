@@ -12,16 +12,18 @@ const grapeNuts = Grape_Nuts({
 });
 
 const Balloon = ({ input }: { input: string }) => {
-  const startX = Math.random() * window.innerWidth - 200;
-  const endX = Math.random() * window.innerWidth - 200;
+  const startX = Math.random() * window.innerWidth - 400;
+  const endX = Math.random() * window.innerWidth - 400;
 
   const [flyAwayAnimation, setFlyAwayAnimation] = useSpring(() => ({
     from: { transform: `translate3d(${startX}px, 100vh, 0)` },
-    config: { tension: 120, friction: 14, duration: 10000 }
   }));
 
   useEffect(() => {
-    setFlyAwayAnimation({ transform: `translate3d(${endX}, 0vh, 0)` });
+    setFlyAwayAnimation({
+      transform: `translate3d(${endX}, -100vh, 0)`,
+      config: { tension: 120, friction: 14, duration: 10000 }
+    });
   }, [setFlyAwayAnimation, endX]);
 
   return (
