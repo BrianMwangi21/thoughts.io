@@ -13,6 +13,8 @@ export default function UserInput() {
     if (event.key == 'Enter') {
       emitter.emit('create_balloon', input);
       setInput('');
+      const target = event.target as HTMLInputElement;
+      target.blur();
     }
   }
 
